@@ -7,8 +7,8 @@
 
 /*
  * Define a simpler function than memset_s() to clear memory.
- * The implementation checks for mem==NULL with assert ()
- * and trusts the memsz without checking.
+ * The implementation silently ignores mem==NULL and also
+ * trusts the memsz without checking.
  */
 void arpa2_zapmem (volatile void *mem, size_t memsz);
 
