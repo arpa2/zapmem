@@ -53,4 +53,19 @@ install (FILES ${CMAKE_SOURCE_DIR}/include/arpa2/zapmem.h
          DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/arpa2)
 
 install (TARGETS arpa2zapmem
-         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/arpa2)
+         DESTINATION ${CMAKE_INSTALL_LIBDIR}/arpa2)
+
+#
+# Packaging
+#
+
+set (CPACK_PACKAGE_NAME "zapmem")
+set (CPACK_PACKAGE_VERSION ${zapmem_VERSION})
+set (CPACK_PACKAGE_VENDOR "ARPA2.net")
+set (CPACK_PACKAGE_CONTACT "Rick van Rein <rick@openfortress.nl>")
+# License information for packaging. This uses the SPDX license
+# identifiers from https://spdx.org/licenses/
+set (CPACK_FREEBSD_PACKAGE_LICENSE "BSD-2-Clause")
+include (PackAllPossible)
+include (CPack)
+
