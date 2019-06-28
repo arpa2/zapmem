@@ -66,8 +66,7 @@ add_test (NAME testzap-counted-dozap
 add_test (NAME testzap-counted-dontzap
     COMMAND ${CMAKE_COMMAND} -E env LD_PRELOAD=$<TARGET_FILE:wrap_nozapmem>
             ${CMAKE_COMMAND} -E env DYLD_INSERT_LIBRARIES=$<TARGET_FILE:wrap_nozapmem>
-            $<TARGET_FILE:testzap> 0)
-#TODO# Last check should be much higher, 125 or so
+            $<TARGET_FILE:testzap> 124)
 
 #
 # Install

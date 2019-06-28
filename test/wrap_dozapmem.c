@@ -15,5 +15,7 @@
 void arpa2_zapmem (volatile void *mem, size_t memsz) {
 	printf ("TEST version of arpa2_zapmem() overtakes library call\n");
 	printf ("This is a test program, to see if the counter is tested\n");
-	memset ((void *) mem, 0, memsz);
+	if (mem != NULL) {
+		memset ((void *) mem, 0, memsz);
+	}
 }
