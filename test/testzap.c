@@ -18,8 +18,5 @@ int main (int argc, char *argv []) {
 	free (m);
 	printf ("Wiping variable with zapvar...\n");
 	arpa2_zapvar (m);
-	if (m != NULL) {
-		exit (1);
-	}
 	return 0;
 }
