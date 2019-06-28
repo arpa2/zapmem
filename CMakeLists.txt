@@ -37,13 +37,37 @@ target_link_libraries (testzap arpa2zapmem)
 
 
 #
+# Builds for tests
+#
+
+add_library (wrap_dozapmem SHARED ${CMAKE_SOURCE_DIR}/test/wrap_dozapmem.c)
+add_library (wrap_nozapmem SHARED ${CMAKE_SOURCE_DIR}/test/wrap_nozapmem.c)
+
+
+#
 # Test
 #
 
 enable_testing ()
+
 add_test (NAME testzap
           COMMAND testzap)
 
+add_test (NAME testzap-counted
+          COMMAND testzap 0)
+
+# Can we do this on Windows too?
+add_test (NAME testzap-counted-dozap
+    COMMAND ${CMAKE_COMMAND} -E env LD_PRELOAD=$<TARGET_FILE:wrap_dozapmem>
+            ${CMAKE_COMMAND} -E env DYLD_INSERT_LIBRARIES=$<TARGET_FILE:wrap_dozapmem>
+            $<TARGET_FILE:testzap> 0)
+
+# Can we do this on Windows too?
+add_test (NAME testzap-counted-dontzap
+    COMMAND ${CMAKE_COMMAND} -E env LD_PRELOAD=$<TARGET_FILE:wrap_nozapmem>
+            ${CMAKE_COMMAND} -E env DYLD_INSERT_LIBRARIES=$<TARGET_FILE:wrap_nozapmem>
+            $<TARGET_FILE:testzap> 0)
+#TODO# Last check should be much higher, 125 or so
 
 #
 # Install
